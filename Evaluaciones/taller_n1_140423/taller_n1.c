@@ -38,24 +38,64 @@ int main(){
     printf("\t\t**Bienvenido a TuMalla.com**\n");
 
     do{
+        factura=0;
+        total=0;
+        f=0;
+
         printf("\nNuevo cliente");
         contp=contp+1;
         printf("\nCuanto tiempo lleva como comprador? \n\t=> ");
         scanf("%d",&years);
 
-        printf("\n")
+        printf("\nQue desea comprar? \n\tMallas para Beisbol => 1 \n\tMallas para Tennis => 2");
+        printf("\n\t\t==> ");
+        scanf("%d",&comp);
+        printf("\nCuantos metros va ha llevar? \n\t==> ");
+        scanf("%d",&m);
 
+        if(comp==1){
+            contb=contb+1;
+            factura=m*PMB;
+            if(years>5){
+                contpdesc_b=contpdesc_b+1;
+                total=factura*DB;
+                factura=factura-total;
+            } 
+        }else{
+            contt=contt+1;
+            factura=m*PMT;
+            if(years>5){
+                contpdesc_t=contpdesc_t+1;
+                total=factura*DT;
+                factura=factura-total;
+            }
+        }
 
+        if(years>15){
+            f=factura*DA;
+            factura=factura-f;
+        }
 
-
-
+        printf("El descuento fue de %0.2f",total+f);
+        printf("\nSe debe pagar %0.2f\n",factura);
+        
+        printf("\n\nHay otro cliente? \n\t[1] SI \n\t[2] NO \n\tSu respuesta ==> ");
+        scanf("%d",&resp);
+        
     }while(resp==1);
 
+    if(contb>contt){
+        printf("\nEntre los dos tipos de mallas, se vendieron mas mallas para beisbol, con un total de %d",contb);
+    }else{
+        if(contt>contb){
+            printf("\nEntre los dos tipos de mallas, se vendieron mas mallas para tennis, con un total de %d",contt);
+        }else{
+            printf("\nEntre los dos tipos de mallas, ambas se vendieron por partes iguales. \n==> Mallas para Beisbol %d \n==> Mallas para Tennis %d",contb,contt);
+        }
+    }
 
-
-
-
-
+    printf("\n\nEl descuento en mallas de Beisbol lo obtuvieron %d personas",contpdesc_b);
+    printf("\n\nEl descuento en mallas de Tennis lo obtuvieron %d personas",contpdesc_t);
 
     return 0;
 }
